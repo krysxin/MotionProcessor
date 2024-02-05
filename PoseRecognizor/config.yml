@@ -1,0 +1,94 @@
+# config.yaml
+preprocessor:
+  origin: [0, 0, 0]
+  normal: [0, -1, 0]
+  rotate: true
+
+recognizor:
+  ## MQTT
+  pubhost: localhost
+  port: 1883
+  pubtopic: sony/ui
+
+  ## Dataset
+  dataset_folder: Dataset
+  template_files:
+    - dataset_swipeLeft5m.json
+    - dataset_swipeLeft5h.json
+    - dataset_swipeLeft5l.json
+    - dataset_swipeLeftL1m.json
+    - dataset_swipeLeftL1h.json
+    - dataset_swipeRight1m.json
+    - dataset_swipeRight1h.json
+    - dataset_swipeRightR1m.json
+    - dataset_swipeRightR1h.json
+    - dataset_zoomIn3L.json
+    - dataset_zoomIn1m.json
+    - dataset_zoomOut3L.json
+    - dataset_zoomOut1m.json
+    # - dataset_swipeLeftLScreen1.json
+    # - dataset_swipeLeftScreen1.json
+    # - dataset_swipeRightRScreen1.json
+    # - dataset_swipeRightScreen1.json
+    # - dataset_zoomInScreen1.json
+    # - dataset_zoomOutScreen1.json
+
+
+  label_dict:
+    0: Circle
+    1: Triangle
+    2: SwipeLeft
+    3: SwipeRight
+    4: SwipeLeftL
+    5: SwipeRightR
+    6: ZoomIn
+    7: ZoomOut
+    8: PressR
+    9: PressL
+
+  ## Calibration file
+  calib_file: calib_ws2.json
+
+  ## If use noise filter
+  use_noise_filter_cursor: true
+  cursor_min_cutoff: 0.008
+  cursor_beta: 0.3
+  use_noise_filter_all: true
+  all_min_cutoff: 0.01
+  all_beta: 0.5
+  
+  ## Add mirrored data
+  mirror_templates: true
+
+  ## Trackable region
+  track_dist: 3000
+  track_angle: 45
+  
+  ## Model hyperparameter
+  model_id: 3
+  window_size: 20
+  # Frame distance threshold
+  avg_frame_threshold: 1.5
+  single_frame_threshold: 1.7 
+  first_single_frame_threshold: 3.0 # Not used any more
+
+  ## If use top n reference, only be affective when n > 0
+  n_references: 0
+
+  action_class: 1
+
+  axes: null
+  open_begin: true
+  open_end: false
+  joints: [2,3,4,5,6,7]
+  # If use polar coordinates (currently not available)
+  use_polar: false 
+  # Angle check threshold
+  match_angle: true
+  single_angle_threshold: 0.5
+  avg_angle_threshold: 0.3 #0.25
+  # Test mode
+  test_local: true
+  replay: true
+  use_fixed_id: false
+  user_id: 1 # If use fixed ID, then we use the ID specified here

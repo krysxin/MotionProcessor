@@ -1,0 +1,84 @@
+# config.yaml
+preprocessor:
+  origin: [0, 0, 0]
+  normal: [0, -1, 0]
+  rotate: true
+
+recognizor:
+  ## MQTT
+  pubhost: localhost
+  port: 1883
+  pubtopic: sony/ui
+
+  ## Dataset
+  dataset_folder: Dataset
+  template_files:
+    - dataset_pressingLeftHand_quick.json
+    - dataset_pressingRightHand_quick.json
+    - dataset_pressingRightHand_right.json
+    - dataset_pressingLeftHandNew.json
+    - dataset_pressingNewData2ID13116.json
+
+
+  label_dict:
+    0: Circle
+    1: Triangle
+    2: SwipeLeft
+    3: SwipeRight
+    4: SwipeLeftL
+    5: SwipeRightR
+    6: ZoomIn
+    7: ZoomOut
+    8: PressR
+    9: PressL
+
+  ## Calibration file
+  calib_file: calib_ws2.json
+
+  ## If use noise filter
+  use_noise_filter_cursor: true
+  cursor_min_cutoff: 0.008
+  cursor_beta: 0.3
+  use_noise_filter_all: true
+  all_min_cutoff: 0.01
+  all_beta: 0.5
+
+  ## Add mirrored data
+  mirror_templates: false
+
+
+  ## Trackable region
+  track_dist: 3000
+  track_angle: 45
+
+  ## Model hyperparameter
+  model_id: 3
+  window_size: 11
+  # Frame distance threshold
+  avg_frame_threshold: 1.05
+  single_frame_threshold: 1.1
+  last_single_frame_threshold: 1.5
+
+  ## If use top n reference, only be affective when n > 0
+  n_references: 5
+
+  action_class: 2
+
+  axes: [0,1]
+  open_begin: false
+  open_end: false
+  joints: [2,3,4,5,6,7]
+  # If use polar coordinates (currently not available)
+  use_polar: false 
+  # Angle check threshold
+  match_angle: true
+  single_angle_threshold: 0.3
+  avg_angle_threshold: 0.4 #0.25
+
+
+  # Test model
+  test_local: true
+  replay: false
+  use_fixed_id: false
+  user_id: 1 # If use fixed ID, then we use the ID specified here
+
