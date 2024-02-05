@@ -8,7 +8,7 @@ import numpy as np
 import json, yaml
 import paho.mqtt.client as mqtt
 
-from preprocess import normalizePoints, cart2polar
+from preprocess import normalizePoints
 from utils import load_yaml, load_json, write_data2json, on_mqtt_connect, transform1D, templates_mirror_flip
 from recognizorv3 import dtw1, dtw3, recognizor_dynamic
 from oneEuroFilter import OneEuroFilter
