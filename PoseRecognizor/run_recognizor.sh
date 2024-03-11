@@ -9,7 +9,7 @@ if [ -z "$flag" ]; then
 fi
 
 # input_file="PoseData/3DDynamicPoseData_1207/misSwipeWSID8.txt"
-input_file="Data/movementShuaiID34587.txt"
+input_file="Data/drawlinesTwohands0311ID11.txt"
 
 if [ "$flag" -eq 1 ]; then
     cat "$input_file" | python PoseRecognizor/recognizor_wrapper.py

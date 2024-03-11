@@ -339,8 +339,8 @@ class Recognizor:
         self.cur_frame = frame[0]
 
         ## Normalize the selected keypoints data of the current frame
-        frame = self.preprocess(self.cur_frame)
-        self.full_joints = frame.tolist()
+        # frame = self.preprocess(self.cur_frame)
+        frame = np.array(frame[0])
         # frame = frame[self.joints]
         
 
@@ -394,6 +394,7 @@ class Recognizor:
                 self.pt_l = self.filter_cursor(self.cur_frame[2], self.cur_frame[4], self.cursor_filter_l)
                 self.pt_r = self.filter_cursor(self.cur_frame[5], self.cur_frame[7], self.cursor_filter_r)
 
+        self.full_joints = frame.tolist()
 
         
         ## (Only for local test) 
@@ -405,6 +406,7 @@ class Recognizor:
             else:
                 time_delta = max(0, (data['fusion_time'] * 1e-3 - self.start_time_input) - (time.time() - self.start_time_host))
                 time.sleep(time_delta)
+        
 
         """
         ## Add input frame data into the data queue
@@ -598,7 +600,7 @@ if __name__ == "__main__":
 
     # If apply oneEuroFilter to all body keypoints, parameter could be modified in the program above
 
-    recognizor = Recognizor(config_file1,  mode=0, save_result = save_result, result_file = result_file)
+    recognizor = Recognizor(config_file1,  mode=1, save_result = save_result, result_file = result_file)
     # recognizor_press = Recognizor(config_file2, save_result = save_result, result_file = result_file)
 
     
@@ -637,10 +639,10 @@ if __name__ == "__main__":
             pt_l, pt_r = recognizor.get_cursor_coords()
             
             joint_coords = recognizor.full_joints
-                        
 
             pub_msg = {"cursor_l": pt_l, "cursor_r": pt_r, "joints": joint_coords, "user": res}
             client.publish(recognizor.pubtopic, payload=json.dumps(pub_msg))
+            print(recognizor.frame_id, pub_msg["joints"][7])
 
     except KeyboardInterrupt:
         print("\nTesting interrupted by user.")    

@@ -50,7 +50,7 @@ recognizor:
   calib_file: calib_ws2.json
 
   ## If use noise filter
-  use_noise_filter_cursor: true
+  use_noise_filter_cursor: false
   cursor_min_cutoff: 0.008
   cursor_beta: 0.3
   use_noise_filter_all: true
@@ -90,5 +90,5 @@ recognizor:
   # Test mode
   test_local: true
   replay: true
-  use_fixed_id: false
-  user_id: 1 # If use fixed ID, then we use the ID specified here
+  use_fixed_id: true
+  user_id: 11 # If use fixed ID, then we use the ID specified here
